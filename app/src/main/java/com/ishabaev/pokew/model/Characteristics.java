@@ -5,16 +5,18 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import io.realm.RealmList;
+import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class Characteristics {
+public class Characteristics extends RealmObject{
 
     @PrimaryKey
     @SerializedName("id")
     private Integer id;
 
     @SerializedName("descriptions")
-    private List<Description> descriptions;
+    private RealmList<Description> descriptions;
 
     public Integer getId() {
         return id;
@@ -28,7 +30,7 @@ public class Characteristics {
         return descriptions;
     }
 
-    public void setDescriptions(List<Description> descriptions) {
+    public void setDescriptions(RealmList<Description> descriptions) {
         this.descriptions = descriptions;
     }
 }

@@ -1,6 +1,7 @@
 package com.ishabaev.pokemonwiki.repository
 
 
+import com.ishabaev.pokew.model.Characteristics
 import com.ishabaev.pokew.model.PokemonPreview
 import rx.Observable
 
@@ -10,5 +11,5 @@ interface PokemonRepository {
 
     fun restorePokemons(position: Int): Observable<List<PokemonPreview>>
 
-    //fun characteristic(id: Int): Observable<Characteristics>
+    fun characteristic(id: Int): Observable<Characteristics>
 }

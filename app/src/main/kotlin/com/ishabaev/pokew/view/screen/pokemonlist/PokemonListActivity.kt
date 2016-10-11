@@ -31,12 +31,12 @@ class PokemonListActivity : AppCompatActivity(), PokemonListView {
         pokemonRecyclerView = findViewById(R.id.pokemon_list) as RecyclerView
         initRecyclerView(pokemonRecyclerView)
 
-        /*if (savedInstanceState != null) {
+        if (savedInstanceState != null) {
             var position = savedInstanceState!!.get(POSITION_KEY) as Int
             mPresenter.restore(position)
         } else {
             mPresenter.nextPokemonList()
-        }*/
+        }
     }
 
     private fun initRecyclerView(pokemonRecyclerView: RecyclerView) {

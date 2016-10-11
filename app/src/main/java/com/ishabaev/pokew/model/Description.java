@@ -3,7 +3,11 @@ package com.ishabaev.pokew.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Description {
+import io.realm.RealmObject;
+import io.realm.annotations.RealmClass;
+
+@RealmClass
+public class Description extends RealmObject {
 
     @SerializedName("description")
     private String description;

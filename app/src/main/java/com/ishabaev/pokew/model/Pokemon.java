@@ -3,11 +3,13 @@ package com.ishabaev.pokew.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
+import io.realm.RealmList;
+import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
+import io.realm.annotations.RealmClass;
 
-public class Pokemon {
+@RealmClass
+public class Pokemon extends RealmObject {
 
     @PrimaryKey
     @SerializedName("id")
@@ -18,5 +20,5 @@ public class Pokemon {
     private String name;
 
     @SerializedName("effect_entries")
-    private List<EffectEntry> effectEntries;
+    private RealmList<EffectEntry> effectEntries;
 }

@@ -2,6 +2,7 @@ package com.ishabaev.pokemonwiki.repository
 
 
 import com.ishabaev.pokemonwiki.api.ApiFactory
+import com.ishabaev.pokew.model.Characteristics
 import com.ishabaev.pokew.model.PokemonPreview
 import io.realm.Realm
 import rx.Observable
@@ -10,7 +11,7 @@ class DefaultPokemonRepository : PokemonRepository {
 
     override fun pokemons(offset: Int): Observable<List<PokemonPreview>> {
         return Observable.fromCallable({ loadPokemonsLocal(offset + 1, offset) })
-                .onErrorResumeNext({ loadPokemonsRemote(offset) })
+                //.onErrorResumeNext({ loadPokemonsRemote(offset) })
                 .flatMap({ pokemons ->
                     if (pokemons.size < 20) {
                         loadPokemonsRemote(offset)
@@ -27,7 +28,7 @@ class DefaultPokemonRepository : PokemonRepository {
     private fun loadPokemonsLocal(start: Int, offset: Int): List<PokemonPreview> {
         var results = Realm.getDefaultInstance()
                 .where(PokemonPreview::class.java)
-                .between("mId", start, offset + 20)
+                .between("id", start, offset + 20)
                 .findAll()
         return Realm.getDefaultInstance().copyFromRealm(results)
     }
@@ -35,7 +36,7 @@ class DefaultPokemonRepository : PokemonRepository {
     private fun loadPokemonsLocal(position: Int): List<PokemonPreview> {
         var results = Realm.getDefaultInstance()
                 .where(PokemonPreview::class.java)
-                .between("mId", 0, position)
+                .between("id", 0, position)
                 .findAll()
         return Realm.getDefaultInstance().copyFromRealm(results)
     }
@@ -46,22 +47,22 @@ class DefaultPokemonRepository : PokemonRepository {
                     listPokemonApiResult ->
                     Observable.from(listPokemonApiResult.results)
                 })
-                /*.doOnNext({ pokemonPreview ->
+                .doOnNext({ pokemonPreview ->
                     var url = pokemonPreview.url
                     if (url != null) {
                         var id = getIdFromUrl(url)
                         pokemonPreview.id = id
                     }
-                })*/
+                })
                 .toList()
-        /*.doOnNext({
-            pokemons ->
-            Realm.getDefaultInstance()
-                    .executeTransaction({
-                        transaction ->
-                        transaction.insertOrUpdate(pokemons as List<PokemonPreview>)
-                    })
-        })*/
+                .doOnNext({
+                    pokemons ->
+                    Realm.getDefaultInstance()
+                            .executeTransaction({
+                                transaction ->
+                                transaction.insertOrUpdate(pokemons)
+                            })
+                })
     }
 
     private fun getIdFromUrl(url: String): Int {
@@ -72,7 +73,7 @@ class DefaultPokemonRepository : PokemonRepository {
         return Integer.parseInt(p)
     }
 
-    /*override fun characteristic(id: Int): Observable<Characteristics> {
+    override fun characteristic(id: Int): Observable<Characteristics> {
         return Observable.fromCallable({ loadCharacteristicLocal(id) })
                 .flatMap({ characteristic ->
                     if (characteristic == null) {
@@ -101,5 +102,5 @@ class DefaultPokemonRepository : PokemonRepository {
                                 transaction.insertOrUpdate(characteristic)
                             })
                 })
-    }*/
+    }
 }

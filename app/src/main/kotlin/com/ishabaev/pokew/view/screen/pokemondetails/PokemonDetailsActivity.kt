@@ -19,8 +19,8 @@ class PokemonDetailsActivity : AppCompatActivity(), PokemonDetailsView {
         val NAME_KEY: String = "name"
         fun showActivity(activity: Activity, preview: PokemonPreview) {
             var intent = Intent(activity, PokemonDetailsActivity::class.java)
-            /*intent.putExtra(PokemonDetailsActivity.ID_KEY, preview.getId())
-            intent.putExtra(PokemonDetailsActivity.NAME_KEY, preview.getName())*/
+            intent.putExtra(PokemonDetailsActivity.ID_KEY, preview.getId())
+            intent.putExtra(PokemonDetailsActivity.NAME_KEY, preview.getName())
             activity.startActivity(intent)
         }
     }
