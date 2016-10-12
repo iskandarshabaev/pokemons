@@ -82,12 +82,13 @@ class DefaultPokemonRepository : PokemonRepository {
                         Observable.just(characteristic)
                     }
                 })
+                .onErrorResumeNext({ loadCharacteristicRemote(id) })
     }
 
-    private fun loadCharacteristicLocal(position: Int): Characteristics {
+    private fun loadCharacteristicLocal(id: Int): Characteristics {
         var results = Realm.getDefaultInstance()
                 .where(Characteristics::class.java)
-                .between("id", 0, position)
+                .equalTo("id", id)
                 .findFirst()
         return Realm.getDefaultInstance().copyFromRealm(results)
     }

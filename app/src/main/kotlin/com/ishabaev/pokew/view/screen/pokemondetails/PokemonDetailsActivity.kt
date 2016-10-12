@@ -7,6 +7,7 @@ import android.support.design.widget.CollapsingToolbarLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.widget.ImageView
+import android.widget.TextView
 import com.ishabaev.pokemonwiki.repository.RepositoryProvider
 import com.ishabaev.pokemonwiki.util.ImageHelper
 import com.ishabaev.pokew.R
@@ -26,10 +27,12 @@ class PokemonDetailsActivity : AppCompatActivity(), PokemonDetailsView {
     }
 
     private lateinit var mPresenter: PokemonDetailsPresenter
+    private lateinit var mDescriptionTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
+        initViews()
         var id = intent.getIntExtra(ID_KEY, -1)
         if (id >= 0) {
             initPoster(id)
@@ -61,7 +64,11 @@ class PokemonDetailsActivity : AppCompatActivity(), PokemonDetailsView {
         mPresenter = PokemonDetailsPresenter(this, RepositoryProvider.sPokemonRepository)
     }
 
-    override fun showDescription(description: String) {
+    private fun initViews() {
+        mDescriptionTextView = findViewById(R.id.description) as TextView
+    }
 
+    override fun showDescription(description: String) {
+        mDescriptionTextView.text = description
     }
 }

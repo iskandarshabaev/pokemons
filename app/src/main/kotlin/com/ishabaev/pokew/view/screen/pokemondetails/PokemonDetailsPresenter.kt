@@ -1,6 +1,7 @@
 package com.ishabaev.pokemonwiki.screen.pokemondetails
 
 import com.ishabaev.pokemonwiki.repository.PokemonRepository
+import com.ishabaev.pokemonwiki.util.RxSchedulers
 import com.ishabaev.pokew.model.Characteristics
 
 
@@ -8,11 +9,9 @@ class PokemonDetailsPresenter(private val mView: PokemonDetailsView,
                               private val mRepository: PokemonRepository) {
 
     fun load(id: Int) {
-        /*mRepository.characteristic(id)
+        mRepository.characteristic(id)
                 .compose(RxSchedulers.async<Characteristics>())
-                .subscribe({
-                    this.showCharacteristics(it)
-                }, { this.showException(it) })*/
+                .subscribe({ this.showCharacteristics(it) }, { this.showException(it) })
     }
 
     private fun showCharacteristics(characteristics: Characteristics) {
