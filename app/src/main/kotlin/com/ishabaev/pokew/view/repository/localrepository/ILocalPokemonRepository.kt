@@ -7,7 +7,7 @@ import com.ishabaev.pokew.model.PokemonPreview
 import com.ishabaev.pokew.model.Stat
 import rx.Observable
 
-interface PokemonRepository {
+interface ILocalPokemonRepository {
 
     fun pokemon(id: Int): Observable<Pokemon>
 

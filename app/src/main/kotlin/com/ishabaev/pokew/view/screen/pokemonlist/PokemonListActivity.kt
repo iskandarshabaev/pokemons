@@ -32,7 +32,7 @@ class PokemonListActivity : AppCompatActivity(), PokemonListView {
         initRecyclerView(pokemonRecyclerView)
 
         if (savedInstanceState != null) {
-            var position = savedInstanceState!!.get(POSITION_KEY) as Int
+            var position = savedInstanceState.get(POSITION_KEY) as Int
             mPresenter.restore(position)
         } else {
             mPresenter.nextPokemonList()

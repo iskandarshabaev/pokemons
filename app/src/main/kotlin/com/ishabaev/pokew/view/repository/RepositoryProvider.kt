@@ -5,7 +5,8 @@ object RepositoryProvider {
     var sPokemonRepository: PokemonRepository
 
     init {
-        sPokemonRepository = DefaultPokemonRepository()
+        sPokemonRepository = DefaultPokemonRepository(
+                LocalPokemonRepository(), RemotePokemonRepository())
     }
 
     fun setPokemonRepository(pokemonRepository: PokemonRepository) {

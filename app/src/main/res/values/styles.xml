@@ -25,4 +25,11 @@
         <item name="android:windowAnimationStyle">@android:style/Animation</item>
     </style>
 
+    <style name="TitleText" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:layout_margin">@dimen/margin_medium</item>
+        <item name="android:textSize">@dimen/text.16</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
 </resources>

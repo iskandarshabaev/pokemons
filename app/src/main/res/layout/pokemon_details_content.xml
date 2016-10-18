@@ -6,14 +6,58 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:id="@+id/title_base_experience"
+            style="@style/TitleText"
+            android:text="@string/base_experience"/>
+
+        <TextView
+            android:id="@+id/base_experience"
+            style="@style/TitleText"
+            android:layout_toRightOf="@+id/title_base_experience"/>
+
+        <TextView
+            android:id="@+id/title_height"
+            style="@style/TitleText"
+            android:layout_below="@+id/title_base_experience"
+            android:text="@string/height"/>
+
+        <TextView
+            android:id="@+id/height"
+            style="@style/TitleText"
+            android:layout_below="@+id/base_experience"
+            android:layout_toRightOf="@+id/title_height"/>
+
+        <TextView
+            android:id="@+id/title_weight"
+            style="@style/TitleText"
+            android:layout_below="@+id/height"
+            android:text="@string/weight"/>
+
+        <TextView
+            android:id="@+id/weight"
+            style="@style/TitleText"
+            android:layout_below="@+id/height"
+            android:layout_toRightOf="@+id/title_weight"/>
+
+        <TextView
+            android:id="@+id/title_stats"
+            style="@style/TitleText"
+            android:layout_below="@+id/title_weight"
+            android:text="@string/stats"/>
+
+        <LinearLayout
+            android:id="@+id/stats"
+            style="@style/TitleText"
+            android:layout_margin="@dimen/margin_medium"
+            android:layout_below="@+id/weight"
+            android:layout_toRightOf="@+id/title_stats"
+            android:orientation="vertical"/>
+
         <ProgressBar
             android:id="@+id/progress"
             style="?android:attr/progressBarStyleLarge"
@@ -23,6 +67,6 @@
             android:layout_margin="@dimen/margin_medium"
             android:visibility="gone"/>
 
-    </FrameLayout>
+    </RelativeLayout>
 
 </android.support.v4.widget.NestedScrollView>

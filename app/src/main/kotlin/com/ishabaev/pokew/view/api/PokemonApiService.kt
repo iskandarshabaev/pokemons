@@ -1,9 +1,6 @@
 package com.ishabaev.pokemonwiki.api
 
-import com.ishabaev.pokew.model.Characteristics
-import com.ishabaev.pokew.model.Pokemon
-import com.ishabaev.pokew.model.PokemonApiResult
-import com.ishabaev.pokew.model.PokemonPreview
+import com.ishabaev.pokew.model.*
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -21,5 +18,8 @@ interface PokemonApiService {
 
     @GET("pokemon/")
     fun pokemons(@Query("offset") offset: Int): Observable<PokemonApiResult<List<PokemonPreview>>>
+
+    @GET("stat/{id}")
+    fun stat(@Path("id") id: Int): Observable<Stat>
 
 }

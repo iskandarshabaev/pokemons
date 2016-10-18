@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">PokemonWiki</string>
+    <string name="base_experience">Base experience</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="stats">Stats</string>
+    <string name="description">Description</string>
 </resources>

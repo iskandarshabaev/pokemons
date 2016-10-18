@@ -18,8 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
         <activity android:name="com.ishabaev.pokemonwiki.screen.pokemondetails.PokemonDetailsActivity"/>
+        <activity android:name=".view.screen.pokemondetails.PokemonDetailsFragment">
+        </activity>
     </application>
 
 </manifest>
